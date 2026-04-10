@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Segitiga</title>
+   <style>
+  :root {
+    --primary-color: #2c3e70;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --success-color: #27ae60;
+    --danger-color: #e74c3c;
+    --bg-math: #f4f7f6;
+  }
+
+  body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: var(--bg-math);
+    background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+    background-size: 20px 20px;
+    margin: 0; 
+    padding: 20px; 
+    color: #333;
+  }
+  
+  /*Revisi By Harzz(Muhammad Bahar)*/
+  /*Add Animation by Harzz*/
+  
+@keyframes animasimasuk {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+  header { 
+    text-align: center; 
+    background: var(--primary-color); 
+    color: white; 
+    padding: 2rem 1rem; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-bottom: 5px solid var(--accent-color);
+    margin-bottom: 30px;
+  
+  animation-name: animasimasuk;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards
+  }
+
+  header h1 {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  header h3 {
+    margin: 5px 0;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+
+  .container {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 30px; 
+  }
+
+  .card {
+    background: white; 
+    padding: 25px; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+    width: 340px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card h3 {
+    color: var(--primary-color);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+    margin-top: 0;
+  }
+
+  .formula-box { 
+    background: #f8f9fa; 
+    padding: 15px; 
+    border-radius: 8px; 
+    text-align: center; 
+    margin-bottom: 20px; 
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    border: 1px dashed var(--accent-color);
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+  }
+
+  input { 
+    width: 100%; 
+    padding: 12px; 
+    margin-bottom: 15px; 
+    border: 2px solid #eee; 
+    border-radius: 8px; 
+    box-sizing: border-box;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  input:focus {
+    border-color: var(--accent-color);
+  }
+
+  .buttons { 
+    display: flex; 
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  button {
+    flex: 1; 
+    padding: 12px; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    color: white; 
+    font-weight: bold; 
+    text-transform: uppercase;
+    transition: filter 0.2s, transform 0.1s;
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  .btn-hitunng { 
+    background-color: var(--success-color);
+    box-shadow: 0 4px 0 #1e8449;
+  }
+
+  .btn-reset { 
+    background-color: var(--danger-color);
+    box-shadow: 0 4px 0 #c0392b;
+  }
+
+  button:hover {
+    filter: brightness(1.1);
+  }
+
+  .output { 
+    margin: 15px 0; 
+    padding: 15px; 
+    background-color: #fffde7;
+    border-radius: 8px;
+    border-left: 5px solid #fbc02d;
+    font-size: 1rem; 
+    min-height: 40px;
+    line-height: 1.5;
+  }
+
+  .output b {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+  }
+  
+  /* footer create by Harzz*/
+  .footer-container {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-card {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.footer-brand {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.footer-brand .copyright {
+    color: var(--accent-color);
+}
+
+.footer-divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    margin: 15px auto;
+    width: 80%;
+}
+
+.footer-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.member-grid {
+    display: flex;
+    flex-direction: column
+    align-items: center;
+    gap: 8px; 
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.member-grid span {
+    background: #f8f9fa;
+    width: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+
+.school-tag {
+    font-size: 0.75rem;
+    color: #fd2;
+    margin: 0;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 10px;
+}
+
+</style>
+
+</head>
+<body>
+    <header>
+        <h1>Kaltiga</h1><h3>Kalkulator Segitiga</h3>
+        <p>Hitung Luas dan Keliling Segitiga dengan Mudah</p>
+    </header>
+
+    <main class="container">
+        <section class="calc-section">
+            <div class="card">
+                <h3>Hitung Luas Segitiga</h3>
+                <div class="formula-box">
+                    <p>L = 1/2 x a x t</p>
+                </div>
+                <input type="number" id="alas" placeholder="Nilai Alas">
+                <input type="number" id="tinggi" placeholder="Nilai Tinggi">
+                <div id="output-luas" class="output"></div>
+                <div class="buttons">
+                    <button onclick="hitungLuas()" class="btn-hitunng">Hitung</button>
+                    <button onclick="reset('luas')" class="btn-reset">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="calc-section">
+            <div class="card">
+                <h3>Hitung Keliling Segitiga</h3>
+                <div class="formula-box">
+                    <p>K = S1 + S2 + S3</p>
+                </div>
+                <input type="number" id="sisi1" placeholder="Sisi A">
+                <input type="number" id="sisi2" placeholder="Sisi B">
+                <input type="number" id="sisi3" placeholder="Sisi C">
+                <div id="output-keliling" class="output"></div>
+                <div class="buttons">
+                    <button onclick="hitungKeliling()" class="btn-hitunng">Hitung</button>
+                    <button onclick="reset('keliling')" class="btn-reset">Reset</button>
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer class="footer-container">
+    <div class="footer-card">
+        <div class="footer-brand">
+            <span class="copyright">© 2026</span>
+            <span class="project-name">Trinity Project</span>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-content">
+            <h4>Anggota Kelompok:</h4>
+            <div class="member-grid">
+                <span>1. Raihan</span>
+                <span>2. Bahar</span>
+                <span>3. Tasya</span>
+                <span>4. Alfiya</span>
+            </div>
+        </div>
+        <p class="school-tag">XI RPL - SMK As-Saabiq Singaparna</p>
+    </div>
+</footer>
+
+    <script>
+function hitungLuas() {
+    const a = Number(document.getElementById('alas').value);
+    const t = Number(document.getElementById('tinggi').value);
+    const out = document.getElementById('output-luas');
+
+    if (a > 0 && t > 0) {
+        const hasil = 0.5 * a * t;
+        out.innerHTML = "L = 1/2 x "+a+" x "+t+"<br>"+"<b>"+"L = "+hasil+"</b>";
+    } else {
+        alert("Masukkan angka positif untuk alas dan tinggi!");
+    }
+}
+
+function hitungKeliling() {
+    const s1 = Number(document.getElementById('sisi1').value);
+    const s2 = Number(document.getElementById('sisi2').value);
+    const s3 = Number(document.getElementById('sisi3').value);
+    const out = document.getElementById('output-keliling');
+
+    if (s1 > 0 && s2 > 0 && s3 > 0) {
+        const hasil = s1 + s2 + s3;
+        out.innerHTML = "K = "+ s1+" + " + s2+" + " + s3 + "<br>" + "<b>"+ "K = "+ hasil+"</b>";
+    } else {
+        alert("Semua sisi harus diisi dengan angka positif!");
+    }
+}
+
+function reset(type) {
+    if (type === 'luas') {
+        document.getElementById('alas').value = "";
+        document.getElementById('tinggi').value = "";
+        document.getElementById('output-luas').innerHTML = "";
+    } else {
+        document.getElementById('sisi1').value = "";
+        document.getElementById('sisi2').value = "";
+        document.getElementById('sisi3').value = "";
+        document.getElementById('output-keliling').innerHTML = "";
+    }
+}
+
+    </script>
+</body>
+</html>
